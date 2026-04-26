@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Estimator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">
+            <h2>Real Estate Management</h2>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Properties</a>
+            <a href="addproperty.html">Add Property</a>
+			<a href = "editproperty.html" class = "active"> Edit property</a>
+
+            <a href="transactions.html">Transactions</a>
+            <a href="estimate.html" class="active">Price Estimator</a>
+        </div>
+    </div>
+</div>
+
+<main class="container">
+    <div class="page-header">
+        <h1>Smart Price Estimator</h1>
+        <p>Get an estimated property value based on location, size, and features.</p>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <h3>Estimate a Property Value</h3>
+            <div class="form-group">
+                <label>Location (City)</label>
+                <input type="text" id="estCity" placeholder="e.g., Chicago">
+            </div>
+            <div class="form-group">
+                <label>Property Type</label>
+                <select id="estType">
+                    <option>House</option>
+                    <option>Apartment</option>
+                    <option>Condo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Square Feet</label>
+                <input type="number" id="estSqft" value="2000">
+            </div>
+            <div class="form-group">
+                <label>Bedrooms</label>
+                <input type="number" id="estBeds" value="3">
+            </div>
+            <div class="form-group">
+                <label>Bathrooms</label>
+                <input type="number" id="estBaths" step="0.5" value="2">
+            </div>
+            <button id="calculateEstimateBtn">Calculate Estimate</button>
+            <div id="estimateResult" class="price-estimate-card"></div>
+        </div>
+
+        <div class="card">
+            <h3>Recent Estimates</h3>
+            <ul id="estimateHistoryList"></ul>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

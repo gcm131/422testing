@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Property</title>
+	<!--referencing w3schools for correct format-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">
+            <h2>Real Estate Management</h2>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Properties</a >
+            <a href="addproperty.html" class="active">Add Property</a>
+			<a href = "editproperty.html" class = "active"> Edit property</a>
+            <a href="transactions.html">Transactions</a >
+            <a href="estimate.html">Price Estimator</a>
+        </div >
+    </div>
+</div>
+
+<main class="container" >
+    <div class="page-header">
+        <h1>Add New Property </h1>
+        <p>Create a new property listing</p >
+    </div>
+
+    <div class="card">
+        <form id="addPropertyForm">
+            <div class="grid-2" >
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="title" required placeholder="e.g., Modern Downtown Loft">
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="city" required placeholder="e.g., Chicago">
+                </div>
+                <div class="form-group">
+                    <label>State</label >
+                    <input type="text" id="state" placeholder="WA" >
+                </div>
+                <div class="form-group" >
+                    <label>Zip Code</label>
+                    <input type="text" id="zipCode" placeholder="60601" >
+                </div>
+                <div class="form-group">
+                    <label>Property Type</label>
+                    <select id="propertyType">
+                        <option>House</option>
+                        <option>Apartment</option >
+                        <option>Condo</option>
+                    </select>
+                </div>
+                <div class="form-group" >
+                    <label>Bedrooms</label>
+                    <input type="number" id="bedrooms" value="3">
+                </div>
+                <div class="form-group">
+                    <label> Bathrooms</label>
+                    <input type="number" id="bathrooms" step="0.5" value="2">
+                </div>
+                <div class="form-group">
+                    <label> Square Feet</label>
+                    <input type="number" id="squareFeet" value="1800">
+                </div>
+                <div class="form-group">
+                    <label>Year Built</label >
+                    <input type="number" id="yearBuilt" value="2010">
+                </div>
+                <div class="form-group">
+                    <label>Listing Price (USD)</label>
+                    <input type="number" id="listingPrice" required value="450000">
+                </div>
+                <div class="form-group">
+                    <label>status</label>
+                    <select id="status">
+                        <option>Available</option>
+                        <option>Pending</option>
+                        <option>Sold</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label>Description</label>
+					<!--check is this counts as style -->
+                    <textarea id="description" rows="3"><!--Tall dark blue house... etc.--></textarea>
+                </div>
+            </div>
+			<!--STYLING FIX IT IN A SEC -->
+            <div style="margin-top: 1rem;">
+                <button type="submit">Create Property</button>
+                <button type="button" id="cancelBtn" class="btn-outline">Cancel</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+
+</body>
+</html>
