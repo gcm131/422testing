@@ -6,11 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// UPDATE THESE TO MATCH YOUR MYSQL
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "1234", 
-    database: "RealEstMng"
+    password: "1234", // <--- PUT YOUR REAL PASSWORD HERE
+    database: "RealEstMng"   // <--- MAKE SURE THIS MATCHES YOUR DB
 });
 
 db.connect(err => {
@@ -21,8 +22,46 @@ db.connect(err => {
     console.log("MySQL connected");
 });
 
-// CHANGE: Use /api/ prefix to prevent naming conflicts with your .html/.js files
-app.get("/api/transactions", (req, res) => {
+// ---------------------------
+// GET /properties (with city)
+// ---------------------------
+app.get("/properties", (req, res) => {
+    const sql = `
+        SELECT 
+            p.property_id,
+            p.owner_id,
+            p.location_id,
+            p.title,
+            p.property_type,
+            p.bedrooms,
+            p.bathrooms,
+            p.square_feet,
+            p.year_built,
+            p.listing_price,
+            p.status,
+            p.description,
+            p.listed_date,
+            l.city,
+            l.state,
+            l.zip_code,
+            l.neighborhood
+        FROM properties p
+        JOIN locations l ON p.location_id = l.location_id
+    `;
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error fetching properties:", err);
+            return res.status(500).json({ error: "Database error" });
+        }
+        res.json(results);
+    });
+});
+
+// -------------------------------------------
+// GET /transactions (JOIN properties + users)
+// -------------------------------------------
+app.get("/transactions", (req, res) => {
     const sql = `
         SELECT 
             t.transaction_id,
@@ -38,19 +77,41 @@ app.get("/api/transactions", (req, res) => {
         JOIN users s ON t.seller_id = s.user_id
         ORDER BY t.transaction_date DESC
     `;
+
     db.query(sql, (err, results) => {
         if (err) {
-            console.error("SQL Error:", err);
-            return res.status(500).json({ error: err.message });
+            console.error("Error fetching transactions:", err);
+            return res.status(500).json({ error: "Database error" });
         }
         res.json(results);
     });
 });
 
-// Fallback logger - Check your terminal when you refresh the page!
-app.use((req, res) => {
-    console.log(`404 Check: ${req.method} ${req.url}`);
-    res.status(404).send("Route not found");
+// ---------------------------
+// POST /transactions/simulate
+// ---------------------------
+app.post("/transactions/simulate", (req, res) => {
+    const sql = `
+        INSERT INTO transactions 
+        (property_id, buyer_id, seller_id, sale_price, transaction_date, payment_method)
+        VALUES (?, ?, ?, ?, NOW(), ?)
+    `;
+
+    const { property_id, buyer_id, seller_id, sale_price, payment_method } = req.body;
+
+    db.query(sql, [property_id, buyer_id, seller_id, sale_price, payment_method], (err, result) => {
+        if (err) {
+            console.error("Error inserting transaction:", err);
+            return res.status(500).json({ error: "Database error" });
+        }
+        res.json({ success: true, transaction_id: result.insertId });
+    });
 });
 
-app.listen(3000, () => console.log("Server on 3000"));
+// ---------------------------
+// START SERVER
+// ---------------------------
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
