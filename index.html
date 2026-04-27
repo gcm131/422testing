@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Management</title>
-    <link  rel="stylesheet" href="style.css " >
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="navbar">
-    <div class="container nav-flex" >
-        <div class="logo" >
-            <h2>Real Estate Management</h2 >
+    <div class="container nav-flex">
+        <div class="logo">
+            <h2>Real Estate Management</h2>
         </div>
         <div class="nav-links">
             <a href="index.html" class="active">Properties</a>
             <a href="addproperty.html">Add Property</a>
-						<a href = "editproperty.html"> Edit property</a>
+            <a href="editproperty.html">Edit property</a>
             <a href="transactions.html">Transactions</a>
             <a href="estimate.html">Price Estimator</a>
         </div>
@@ -75,22 +75,32 @@
             <h3>All Properties</h3>
             <button id="refreshBtn" class="btn-sm">⟳ Refresh</button>
         </div>
-		<!--STYLING FIX IT IN A SEC -->
-        <div style="overflow-x: auto;">
+        <!-- TABLE VIEW -->
+        <div style="overflow-x: auto; margin-top: 1rem;">
             <table id="propertyTable">
                 <thead>
                     <tr>
-                        <th>ID</th><th>Title</th><th>City</th><th>Type</th><th>Bed/Bath</th><th>Sq Ft</th><th>Price ($)</th><th>Status</th><th>Actions</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Location ID</th>
+                        <th>Type</th>
+                        <th>Bed/Bath</th>
+                        <th>Sq Ft</th>
+                        <th>Price ($)</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="propertyTableBody">
-				<!--STYLING FIX IT IN A SEC -->
-                    <tr><td colspan="9" style="text-align:center;" > Loading properties...</td></tr>
+                    <tr>
+                        <td colspan="9" style="text-align:center;">Loading properties...</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </main>
 
+<script src="index.js"></script>
 </body>
 </html>
