@@ -16,8 +16,7 @@
         <div class="nav-links">
             <a href="index.html">Properties</a>
             <a href="addproperty.html">Add Property</a>
-			<a href = "editproperty.html"> Edit property</a>
-
+            <a href="editproperty.html">Edit property</a>
             <a href="transactions.html" class="active">Transactions</a>
             <a href="estimate.html">Price Estimator</a>
         </div>
@@ -35,11 +34,11 @@
             <h3>Transaction History</h3>
             <button id="addSampleTransactionBtn" class="btn-outline">Simulate Sale</button>
         </div>
-		<!--STYLING FIX IT IN A SEC -->
-        <div style="overflow-x: auto;">
-            <table id="transactionTable">
+        
+        <div style="overflow-x: auto; margin-top: 20px;">
+            <table id="transactionTable" style="width: 100%; border-collapse: collapse;">
                 <thead>
-                    <tr>
+                    <tr style="text-align: left; border-bottom: 2px solid #eee;">
                         <th>Transaction ID</th>
                         <th>Property</th>
                         <th>Buyer</th>
@@ -49,15 +48,15 @@
                         <th>Payment Method</th>
                     </tr>
                 </thead>
-				
+                
                 <tbody id="transactionBody">
-					<!--STYLING FIX IT IN A SEC -->
-                    <tr><td colspan="7" style="text-align:center;">Loading transactions...</td></tr>
+                    <tr><td colspan="7" style="text-align:center; padding: 20px;">Loading transactions...</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 </main>
+
 <script src="transactions.js"></script>
 
 </body>
